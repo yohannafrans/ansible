@@ -1,0 +1,11 @@
+---
+- name: Deploy Alertmanager, Grafana, and Promethues using Docker Swarm
+  hosts: target
+  become: yes
+  tasks:
+  - name: Deploy Alertmanager, Grafana, and Prometheus from a compose file
+    docker_stack:
+      state: present
+      name: monitoring
+      compose:
+        - /root/secondphasefinalproject/monitoring/docker-compose.yml

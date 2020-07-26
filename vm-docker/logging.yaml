@@ -1,0 +1,11 @@
+---
+- name: Deploy ELK using Docker Swarm
+  hosts: target
+  become: yes
+  tasks:
+  - name: Deploy ELK from a compose file
+    docker_stack:
+      state: present
+      name: logging
+      compose:
+        - /root/secondphasefinalproject/logging/docker-compose.yml

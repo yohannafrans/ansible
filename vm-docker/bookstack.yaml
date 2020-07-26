@@ -1,0 +1,90 @@
+---
+- name: Deploy Bookstack and Traefik using Docker Compose
+  hosts: target
+  become: yes
+  tasks:
+  - name: Create a Traefik network
+    docker_network: 
+      name: traefik-public
+  - name: Create a Bookstack network
+    docker_network:
+      name: bookstack-network
+  - name: Pull a Bookstack image
+    docker_image:
+      name: linuxserver/bookstack
+      source: pull
+  - name: Create and start Traefik service
+    docker_compose:
+      project_src: /root/secondphasefinalproject/docker-bookstack/traefik
+    register: output
+  - name: Show the output from Traefik process 
+    debug:
+      var: output
+  - name: Create and start Bookstack service
+    docker_compose:
+      project_src: /root/secondphasefinalproject/docker-bookstack
+    register: output
+  - name: Show the output from Bookstack process
+    debug:
+      var: output
+
+- name: Preparation for moving to the Docker Swarm
+  hosts: target
+  become: yes
+  tasks:
+  - name: Stop the Traefik service
+    docker_compose:
+      project_src: /root/secondphasefinalproject/docker-bookstack/traefik
+      build: no
+      stopped: yes
+    register: output
+  - name: Show the output from Traefik right now
+    debug:
+      var: output
+  - name: Stop the Bookstack service
+    docker_compose:
+      project_src: /root/secondphasefinalproject/docker-bookstack
+      build: no
+      stopped: yes
+    register: output
+  - name: Show the output from Bookstack right now
+    debug:
+      var: output
+  - name: Delete a Traefik network, disconnecting all containers
+    docker_network:
+      name: traefik-public
+      state: absent
+      force: yes
+  - name: Delete a Bookstack network, disconnecting all containers
+    docker_network:
+      name: bookstack-network
+      state: absent
+      force: yes
+
+- name: Deploy Bookstack and Traefik using Docker Swarm
+  hosts: target
+  become: yes
+  tasks:
+  - name: Init a new swarm with defaults parameters
+    docker_swarm:
+      state: present
+  - name: Create a Traefik network overlay
+    docker_network:
+      name: traefik-public
+      driver: overlay
+  - name: Create a Bookstack network overlay
+    docker_network:
+      name: bookstack-network
+      driver: overlay
+  - name: Deploy Traefik from a compose file
+    docker_stack:
+      state: present
+      name: traefik
+      compose:
+        - /root/secondphasefinalproject/docker-bookstack/traefik/docker-compose.yml
+  - name: Deploy Bookstack from a compose file
+    docker_stack:
+      state: present
+      name: bookstack
+      compose:
+        - /root/secondphasefinalproject/docker-bookstack/docker-compose.yml
