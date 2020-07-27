@@ -9,3 +9,5 @@
       name: logging
       compose:
         - /root/secondphasefinalproject/logging/docker-compose.yml
+  - name: Increase vm.max_map_count on elasticsearch nodes
+    shell: sysctl -w vm.max_map_count=262144
