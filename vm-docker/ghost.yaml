@@ -1,0 +1,28 @@
+---
+- name: Deploy Ghost and Traefik using Docker Swarm
+  hosts: target
+  become: yes
+  tasks:
+  - name: Init a new swarm with defaults parameters
+    docker_swarm:
+      state: present
+  - name: Create a Traefik network overlay
+    docker_network:
+      name: traefik-public
+      driver: overlay
+  - name: Create a Ghost network overlay
+    docker_network:
+      name: ghost-network
+      driver: overlay
+  - name: Deploy Traefik from a compose file
+    docker_stack:
+      state: present
+      name: traefik
+      compose:
+        - /root/secondphasefinalproject/ghost/traefik/docker-compose.yml
+  - name: Deploy Ghost from a compose file
+    docker_stack:
+      state: present
+      name: ghost
+      compose:
+        - /root/secondphasefinalproject/ghost/docker-compose.yml
