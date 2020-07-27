@@ -26,3 +26,5 @@
       name: ghost
       compose:
         - /root/secondphasefinalproject/ghost/docker-compose.yml
+  - name: Scale Ghost service into three
+     shell: docker service scale ghost_ghost=3
