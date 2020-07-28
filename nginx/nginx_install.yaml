@@ -17,16 +17,17 @@
       state: absent
   - name: Copy the new nginx.conf file
     copy:
-      src: /root/nginx/nginx.conf
+      src: /root/ansible/nginx/nginx.conf
       dest: /etc/nginx/nginx.conf
   - name: Copy  the load balancer config file and restart nginx
     copy:
-      src: /root/nginx/load-balancer.conf
+      src: /root/ansible/nginx/load-balancer.conf
       dest: /etc/nginx/conf.d/load-balancer.conf
-  - name: Start nginx
+  - name: Start and enable nginx
     service:
       name: nginx
       state: started
+      enabled: yes
   - name: Open firewall for http access
     firewalld:
       service: http
