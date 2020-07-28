@@ -1,6 +1,6 @@
 ---
 - name: Installing all the necessary parts
-  hosts: target
+  hosts: docker-nodes
   become: yes
   tasks:
   - name: Install EPEL repository

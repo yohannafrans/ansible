@@ -1,6 +1,6 @@
 ---
 - name: Deploy ELK using Docker Swarm
-  hosts: target
+  hosts: docker-nodes
   become: yes
   tasks:
   - name: Deploy ELK from a compose file

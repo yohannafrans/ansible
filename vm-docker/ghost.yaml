@@ -1,11 +1,8 @@
 ---
 - name: Deploy Ghost and Traefik using Docker Swarm
-  hosts: target
+  hosts: docker-nodes
   become: yes
   tasks:
-  - name: Init a new swarm with defaults parameters
-    docker_swarm:
-      state: present
   - name: Create a Traefik network overlay
     docker_network:
       name: traefik-public
