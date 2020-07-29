@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Deploying NGINX'
                 ansiblePlaybook(
-                    playbook: 'root/ansible/nginx/nginx_install.yaml'
+                    playbook: 'nginx/nginx_install.yaml'
                 )
             }
         }
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Installing parts to VM'
                 ansiblePlaybook(
-                    playbook: 'root/ansible/vm-docker/installingparts.yaml'
+                    playbook: 'vm-docker/installingparts.yaml'
                 )
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Deploying Docker'
                 ansiblePlaybook(
-                    playbook: 'root/ansible/vm-docker/installdocker.yaml'
+                    playbook: 'vm-docker/installdocker.yaml'
                 )
             }
         }
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo 'Deploying Ghost and Traefik'
                 ansiblePlaybook(
-                    playbook: 'root/ansible/vm-docker/ghost.yaml'
+                    playbook: 'vm-docker/ghost.yaml'
                 )
             }
         }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 echo 'Deploying Monitoring'
                 ansiblePlaybook(
-                    playbook: 'root/ansible/vm-docker/monitoring.yaml'
+                    playbook: 'vm-docker/monitoring.yaml'
                 )
             }
         }
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 echo 'Deploying Logging'
                 ansiblePlaybook(
-                    playbook: 'root/ansible/vm-docker/logging.yaml'
+                    playbook: 'vm-docker/logging.yaml'
                 )
             }
         }
