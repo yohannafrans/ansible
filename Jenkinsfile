@@ -6,7 +6,7 @@ pipeline {
                 echo 'Deploying NGINX'
                 ansiblePlaybook(
                     playbook: 'nginx/nginx_install.yaml',
-                    extras: '--private-key /home/ansible/.ssh/id_rsa -vvvv'
+                    credentialsId: 'ansible_sshkey'
                 )
             }
         }
@@ -15,7 +15,7 @@ pipeline {
                 echo 'Installing parts to VM'
                 ansiblePlaybook(
                     playbook: 'vm-docker/installingparts.yaml',
-                    extras: '--private-key /home/ansible/.ssh/id_rsa -vvvv'
+                    credentialsId: 'ansible_sshkey'
                 )
             }
         }
@@ -24,7 +24,7 @@ pipeline {
                 echo 'Deploying Docker'
                 ansiblePlaybook(
                     playbook: 'vm-docker/installdocker.yaml',
-                    extras: '--private-key /home/ansible/.ssh/id_rsa -vvvv'
+                    credentialsId: 'ansible_sshkey'
                 )
             }
         }
@@ -33,7 +33,7 @@ pipeline {
                 echo 'Deploying Ghost and Traefik'
                 ansiblePlaybook(
                     playbook: 'vm-docker/ghost.yaml',
-                    extras: '--private-key /home/ansible/.ssh/id_rsa -vvvv'
+                    credentialsId: 'ansible_sshkey'
                 )
             }
         }
@@ -42,7 +42,7 @@ pipeline {
                 echo 'Deploying Monitoring'
                 ansiblePlaybook(
                     playbook: 'vm-docker/monitoring.yaml',
-                    extras: '--private-key /home/ansible/.ssh/id_rsa -vvvv'
+                    credentialsId: 'ansible_sshkey'
                 )
             }
         }
@@ -51,7 +51,7 @@ pipeline {
                 echo 'Deploying Logging'
                 ansiblePlaybook(
                     playbook: 'vm-docker/logging.yaml',
-                    extras: '--private-key /home/ansible/.ssh/id_rsa -vvvv'
+                    credentialsId: 'ansible_sshkey'
                 )
             }
         }
