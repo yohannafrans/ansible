@@ -6,7 +6,8 @@ pipeline {
                 echo 'Deploying NGINX'
                 ansiblePlaybook(
                     playbook: 'nginx/nginx_install.yaml',
-                    credentialsId: 'ansible_sshkey'
+                    credentialsId: 'ansible_sshkey',
+                    extras: '-vvvv'
                 )
             }
         }
@@ -15,7 +16,8 @@ pipeline {
                 echo 'Installing parts to VM'
                 ansiblePlaybook(
                     playbook: 'vm-docker/installingparts.yaml',
-                    credentialsId: 'ansible_sshkey'
+                    credentialsId: 'ansible_sshkey',
+                    extras: '-vvvv'
                 )
             }
         }
@@ -24,7 +26,8 @@ pipeline {
                 echo 'Deploying Docker'
                 ansiblePlaybook(
                     playbook: 'vm-docker/installdocker.yaml',
-                    credentialsId: 'ansible_sshkey'
+                    credentialsId: 'ansible_sshkey',
+                    extras: '-vvvv'
                 )
             }
         }
@@ -33,7 +36,8 @@ pipeline {
                 echo 'Deploying Ghost and Traefik'
                 ansiblePlaybook(
                     playbook: 'vm-docker/ghost.yaml',
-                    credentialsId: 'ansible_sshkey'
+                    credentialsId: 'ansible_sshkey',
+                    extras: '-vvvv'
                 )
             }
         }
@@ -42,7 +46,8 @@ pipeline {
                 echo 'Deploying Monitoring'
                 ansiblePlaybook(
                     playbook: 'vm-docker/monitoring.yaml',
-                    credentialsId: 'ansible_sshkey'
+                    credentialsId: 'ansible_sshkey',
+                    extras: '-vvvv'
                 )
             }
         }
@@ -51,7 +56,8 @@ pipeline {
                 echo 'Deploying Logging'
                 ansiblePlaybook(
                     playbook: 'vm-docker/logging.yaml',
-                    credentialsId: 'ansible_sshkey'
+                    credentialsId: 'ansible_sshkey',
+                    extras: '-vvvv'
                 )
             }
         }
