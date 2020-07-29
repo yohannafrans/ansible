@@ -2,6 +2,8 @@
 - name: Install nginx
   hosts: webservers
   become: yes
+  vars:
+    ansible_user: ansible
   tasks:
   - name: Install EPEL repository to add nginx repository
     yum:
