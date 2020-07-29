@@ -1,5 +1,22 @@
 ---
-- name: Installing all the necessary parts
+- name: Installing all the necessary parts for all vm
+  hosts: all-vm
+  become: yes
+  tasks:
+  - name: Install vim
+    yum:
+      name: vim-enhanced
+      state: latest
+  - name: Install nano
+    yum:
+      name: nano
+      state: latest
+  - name: Install net tools
+    yum:
+      name: net-tools
+      state: latest
+
+- name: Installing all the necessary parts for vm-docker
   hosts: docker-nodes
   become: yes
   tasks:
@@ -10,10 +27,10 @@
   - name: Install Python pip
     yum:
       name: python-pip
-  - name: Upgraade pip
+  - name: Upgrade pip
     pip:
-     name: pip
-     extra_args: --upgrade
+      name: pip
+      extra_args: --upgrade
   - name: Install Docker module for Python
     pip:
       name: docker
