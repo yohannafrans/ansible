@@ -2,6 +2,8 @@
 - name: Deploy Alertmanager, Grafana, and Promethues using Docker Swarm
   hosts: docker-nodes
   become: yes
+  vars:
+    ansible_user: ansible
   tasks:
   - name: Deploy Alertmanager, Grafana, and Prometheus from a compose file
     docker_stack:

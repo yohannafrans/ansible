@@ -2,6 +2,8 @@
 - name: Installing all the necessary parts for all vm
   hosts: all-vm
   become: yes
+  vars:
+    ansible_user: ansible
   tasks:
   - name: Install vim
     yum:
@@ -19,6 +21,8 @@
 - name: Installing all the necessary parts for vm-docker
   hosts: docker-nodes
   become: yes
+  vars:
+    ansible_user: ansible
   tasks:
   - name: Install EPEL repository
     yum:

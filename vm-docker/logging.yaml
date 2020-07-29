@@ -2,6 +2,8 @@
 - name: Deploy ELK using Docker Swarm
   hosts: docker-nodes
   become: yes
+  vars:
+    ansible_user: ansible
   tasks:
   - name: Deploy ELK from a compose file
     docker_stack:
