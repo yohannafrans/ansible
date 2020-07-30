@@ -23,11 +23,11 @@
       msg: "{{ lookup('env', 'PWD') }}"
   - name: Copy the new nginx.conf file
     copy:
-      src: nginx/nginx.conf
+      src: /etc/nginx/nginx.conf
       dest: /etc/nginx/nginx.conf
   - name: Copy  the load balancer config file and restart nginx
     copy:
-      src: nginx/load-balancer.conf
+      src: /etc/nginx/nginx.conf
       dest: /etc/nginx/conf.d/load-balancer.conf
   - name: Start and enable nginx
     service:
