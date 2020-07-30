@@ -25,5 +25,5 @@
       name: ghost
       compose:
         - /home/ansible/secondphasefinalproject/ghost/docker-compose.yml
-  - name: Scale Ghost service into three
-    shell: docker service scale ghost_ghost=3
+  # - name: Scale Ghost service into three
+  #   shell: docker service scale ghost_ghost=3
