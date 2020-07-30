@@ -17,23 +17,19 @@
     file:
       path: /etc/nginx/nginx.conf
       state: absent
+  - name: Copy the new nginx.conf file
+    copy:
+      src: nginx/nginx.conf
+      dest: /etc/nginx/nginx.conf
   - name: Change directory to /etc/nginx
     shell: cd /etc/nginx
-  - name: Change owner nginx.conf
-    shell: chown ansible nginx.conf
-  - name: Change group nginx.conf
-    shell: chgrp ansible nginx.conf
   - name: Change owner conf.d
     shell: chown ansible conf.d
   - name: Change group nginx.con.f
     shell: chgrp ansible conf.d
-  - name: Copy the new nginx.conf file
-    copy:
-      src: /nginx/nginx.conf
-      dest: /etc/nginx/nginx.conf
   - name: Copy  the load balancer config file and restart nginx
     copy:
-      src: /nginx/load-balancer.conf
+      src: nginx/load-balancer.conf
       dest: /etc/nginx/conf.d/load-balancer.conf
   - name: Start and enable nginx
     service:
