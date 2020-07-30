@@ -19,6 +19,8 @@
       state: absent
   - name: Print working directory
     shell: pwd
+  - debug:
+      msg: "{{ lookup('env', 'PWD') }}"
   - name: Copy the new nginx.conf file
     copy:
       src: nginx/nginx.conf
