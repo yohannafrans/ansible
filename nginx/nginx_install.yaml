@@ -25,7 +25,7 @@
   - name: Copy  the load balancer config file and restart nginx
     copy:
       remote_src: yes
-      src: /nginx/load-balancer.conf
+      src: /nginx/conf.d/load-balancer.conf
       dest: /etc/nginx/conf.d/load-balancer.conf
   - name: Start and enable nginx
     service:
