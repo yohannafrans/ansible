@@ -19,13 +19,11 @@
       state: absent
   - name: Copy the new nginx.conf file
     copy:
-      remote_src: yes
-      src: /etc/nginx/nginx.conf
+      src: nginx/nginx.conf
       dest: /etc/nginx/nginx.conf
   - name: Copy  the load balancer config file and restart nginx
     copy:
-      remote_src: yes
-      src: /etc/nginx/conf.d/load-balancer.conf
+      src: nginx/load-balancer.conf
       dest: /etc/nginx/conf.d/load-balancer.conf
   - name: Start and enable nginx
     service:
