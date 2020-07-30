@@ -18,12 +18,12 @@
       state: present
       name: traefik
       compose:
-        - /root/secondphasefinalproject/ghost/traefik/docker-compose.yml
+        - /home/ansible/secondphasefinalproject/ghost/traefik/docker-compose.yml
   - name: Deploy Ghost from a compose file
     docker_stack:
       state: present
       name: ghost
       compose:
-        - /root/secondphasefinalproject/ghost/docker-compose.yml
+        - /home/ansible/secondphasefinalproject/ghost/docker-compose.yml
   - name: Scale Ghost service into three
     shell: docker service scale ghost_ghost=3

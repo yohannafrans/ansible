@@ -10,4 +10,4 @@
       state: present
       name: monitoring
       compose:
-        - /root/secondphasefinalproject/monitoring/docker-compose.yml
+        - /home/ansible/secondphasefinalproject/monitoring/docker-compose.yml

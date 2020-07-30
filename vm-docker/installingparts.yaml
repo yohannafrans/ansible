@@ -54,5 +54,5 @@
   - name: Clone the app repo
     git:
       repo: 'https://github.com/yohannafrans/secondphasefinalproject'
-      dest: /root/secondphasefinalproject
+      dest: /home/ansible/secondphasefinalproject
       version: master
