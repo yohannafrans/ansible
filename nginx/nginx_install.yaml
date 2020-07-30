@@ -17,6 +17,8 @@
     file:
       path: /etc/nginx/nginx.conf
       state: absent
+  - name: Print working directory
+    shell: pwd
   - name: Copy the new nginx.conf file
     copy:
       src: nginx/nginx.conf
