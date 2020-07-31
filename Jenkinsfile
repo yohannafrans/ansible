@@ -28,20 +28,20 @@ pipeline {
                 )
             }
         }
-        stage('Deploy Ghost and Traefik') {
-            steps {
-                echo 'Deploying Ghost and Traefik'
-                ansiblePlaybook(
-                    playbook: 'vm-docker/ghost.yaml',
-                    credentialsId: 'ansible_sshkey'
-                )
-            }
-        }
         stage('Deploy Monitoring') {
             steps {
                 echo 'Deploying Monitoring'
                 ansiblePlaybook(
                     playbook: 'vm-docker/monitoring.yaml',
+                    credentialsId: 'ansible_sshkey'
+                )
+            }
+        }
+        stage('Deploy Ghost and Traefik') {
+            steps {
+                echo 'Deploying Ghost and Traefik'
+                ansiblePlaybook(
+                    playbook: 'vm-docker/ghost.yaml',
                     credentialsId: 'ansible_sshkey'
                 )
             }
